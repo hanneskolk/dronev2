@@ -12,6 +12,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs("results", exist_ok=True)
 
 model = YOLO("models/best.pt")
+model.fuse()
 tracker = ByteTrack()
 
 
