@@ -3,7 +3,7 @@ from ultralytics import YOLO
 model = YOLO("yolo11s.pt")  # small model
 
 model.train(
-    data="dataset/data.yaml",
+    data="dataset/dataset.yml",
     epochs=50,
     imgsz=640,
     batch=16,
