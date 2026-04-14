@@ -13,8 +13,7 @@ if(torch.cuda.is_available() == True):
     model = YOLO("/content/dronev2/models/best.engine")
 else:
     model = YOLO("/content/dronev2/models/best.pt")
-
-model.fuse()
+    model.fuse()
 
 def process_video(video_path):
     cap = cv2.VideoCapture(video_path)
@@ -40,12 +39,20 @@ def process_video(video_path):
             break
 
         # 🚀 GPU inference with TensorRT
-        results = model.predict(
-            source=frame,
-            conf=0.15,     # low threshold = fewer missed detections
-            device=0,
-            verbose=False
-        )[0]
+        if (torch.cuda.is_available() == True):
+            results = model.predict(
+                source=frame,
+                conf=0.15,     # low threshold = fewer missed detections
+                device=0,
+                verbose=False
+            )[0]
+        else:
+            results = model.predict(
+                source=frame,
+                conf=0.15,     # low threshold = fewer missed detections
+                device="cpu",
+                verbose=False
+            )[0]
 
         annotated = results.plot()
 
