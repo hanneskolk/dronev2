@@ -10,7 +10,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 model = YOLO("/content/dronev2/models/best.engine")
 
-model.fuse()
+#model.fuse()
 
 def process_video(video_path):
     cap = cv2.VideoCapture(video_path)
