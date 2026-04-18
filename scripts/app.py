@@ -20,7 +20,7 @@ def load_model():
 
     # 🔥 SPEED OPTIMIZATIONS
     model.fuse()
-    #model.to("cuda") if hasattr(model, "to") else None
+    model.to("cuda") if hasattr(model, "to") else None
 
     return model
 
