@@ -107,7 +107,7 @@ if video_file:
             frame_small,
             conf=conf,
             imgsz=640,
-            device="cpu",
+            device=0,
             half=True,
             verbose=False
         )[0]
